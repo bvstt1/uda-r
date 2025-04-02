@@ -19,7 +19,7 @@ f <- function(x){
 
 step <- 1
 x <- seq(from = -10, to = 10, by = step)
-x <- seq(from = -10, to = 10, by = step)
+y <- seq(from = -10, to = 10, by = step)
 dominio <- expand.grid(x, y)
 
 z <- f(dominio)
