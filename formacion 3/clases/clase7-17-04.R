@@ -1,5 +1,6 @@
 View(bd_programadores)
 library(readxl)
+
 bd_programadores <- read_excel("bd_programadores.xlsx")
 
 # VARIABLES CUANTITATIVAS
