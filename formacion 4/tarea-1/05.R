@@ -8,7 +8,7 @@ f <- function(x){
 
 # PARÁMETROS
 set.seed(14)
-n <- 100
+n <- 10000
 
 # VECTORIZACIÓN Y ANÁLISIS - DOMINIO CONTINUO
 x <- runif(n, min = -2, max = 2)

@@ -43,5 +43,4 @@ ggplot(bd_programadores, aes(x = salario_mensual, fill = lenguaje_preferido)) +
   labs(title = "Histograma de salario mensual por lenguaje preferido",
        x = "Salario mensual (CLP)", y = "Frecuencia") +
   theme_minimal()
-s
 

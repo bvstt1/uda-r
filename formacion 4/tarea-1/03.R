@@ -7,15 +7,15 @@ f <- function(x){
 
 # PARÁMETROS
 set.seed(14)
-n <- 100
+n <- 10000
 
 # VECTORIZACIÓN Y ANÁLISIS - DOMINIO CONTINUO
 x <- runif(n, min = -10, max = 10)
 y <- runif(n, min = -10, max = 10)
 
-dominio <- cbind(x, y) 
 
-z <- f(dominio)
+dominio <- cbind(x, y) 
+z <- apply(dominio, 1, f)
 
 resultado <- as.matrix(cbind(dominio, z))
 index_min <- which.min(resultado[, 3])
