@@ -24,7 +24,7 @@ grad_f <- Deriv(f, c("x", "y"))
 
 # Definir la matriz hessiana de la función
 
-hass_f <- Deriv(f, c("x", "y"), n = 2)
+hess_f <- Deriv(f, c("x", "y"), n = 2)
 
 # Establecer los parámetros del algoritmo
 
