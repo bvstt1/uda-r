@@ -9,10 +9,10 @@ grad_f <- function(x) {
 
 # Parámetros
 alpha0 <- 0.5
-tau <- 0.01
+tau <- 0.1
 max_iter <- 1000
 tol <- 1e-6
-x_actual <- c(5, 5)
+x_actual <- c(0, 0)
 
 # Para guardar la trayectoria
 x_vals <- matrix(nrow = 0, ncol = 2)
@@ -60,3 +60,4 @@ points(x_vals[,1], x_vals[,2], col = "red", type = "o", pch = 19)
 points(0, 0, col = "blue", pch = 4, lwd = 2)  # mínimo teórico
 legend("topleft", legend = c("Trayectoria", "Mínimo"),
        col = c("red", "blue"), pch = c(19, 4))
+

@@ -2,7 +2,7 @@ library(e1071)
 
 minerales <- read.table("minerales.txt", header = TRUE)
 head(minerales)
-minerales <- minerales[, -1]  # Elimina la primera columna
+minerales <- minerales[, -1]  # Elimina la primera columna (indice)
 
 
 # Ver estructura
@@ -47,7 +47,7 @@ kurtosis <- apply(minerales, 2, kurtosis)
 print(round(kurtosis, 2))
 
 
-###########################################
+  ###########################################
 
 tabla <- data.frame(
   Mineral = names(asimetria),

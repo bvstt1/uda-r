@@ -1,7 +1,9 @@
 ## 1 ##################################################
 
 library(readxl)
-setwd("C:/Users/Basti/Desktop/proyectos/UDA/uda-r/formacion 3")
+library(ggplot2)
+#setwd("C:/Users/Basti/Desktop/proyectos/UDA/uda-r/formacion 3")
+setwd("/home/miitsuki/Escritorio/Proyectos/UDA - r/formacion 3")
 bd_programadores <- read_excel("bd_programadores.xlsx")
 
 str(bd_programadores)
@@ -96,15 +98,16 @@ desv_m <- sd(salario_mensual[genero == "Masculino"])
 desv_f <- sd(salario_mensual[genero == "Femenino"])
 
 # Rango
-range_m <- range(salario_mensual[genero == "Masculino"])
-range_f <- range(salario_mensual[genero == "Femenino"])
+range_m <- diff(range(salario_mensual[genero == "Masculino"]))
+range_f <- diff(range(salario_mensual[genero == "Femenino"]))
 
 # Varianza
 var_m <- var(salario_mensual[genero == "Masculino"])
 var_f <- var(salario_mensual[genero == "Femenino"])
 
 ggplot(bd_programadores, aes(x = salario_mensual, fill = genero)) +
-  geom_histogram(position = "identity", alpha = 0.6, bins = 15) +
+  geom_histogram(position = "identity", alpha = 0.6, bins = 15, color = "black",
+                 ill = "steelblue", color = "black", alpha = 0.8) +
   facet_wrap(~ genero) +
   labs(title = "Histograma de salario mensual por género",
        x = "Salario mensual (CLP)", y = "Frecuencia") +
@@ -131,7 +134,8 @@ boxplot(salario_mensual ~ nivel_educativo,
 
 # Histograma por lenguaje
 ggplot(bd_programadores, aes(x = salario_mensual, fill = nivel_educativo)) +
-  geom_histogram(position = "identity", alpha = 0.6, bins = 15) +
+  geom_histogram(position = "identity", alpha = 0.6, bins = 15, color = "black",
+                 ill = "steelblue", color = "black", alpha = 0.8) +
   facet_wrap(~ nivel_educativo) +
   labs(title = "Histograma de salario mensual por Nivel Educativo",
        x = "Salario mensual (CLP)", y = "Frecuencia") +

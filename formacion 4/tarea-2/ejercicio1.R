@@ -34,11 +34,15 @@ for(i in 1:max_iter){
   x_actual <- x_nuevo
 }
 
-# Resultado
-resultados <- list(minimo = f(x_nuevo),
-                   objetivo = x_nuevo,
-                   iteraciones = i)
-print(resultados)
+# resultado
+resumen <- data.frame(
+  minimo = resultados$minimo,
+  x_optimo = resultados$objetivo,
+  iteraciones = resultados$iteraciones
+)
+
+print(resumen)
+
 
 # Gráfico de la función
 curve(f, from = -12, to = 2, col = "blue", lwd = 2,
@@ -46,6 +50,7 @@ curve(f, from = -12, to = 2, col = "blue", lwd = 2,
 
 # Trayectoria del algoritmo
 points(x_vals, f_vals, col = "red", pch = 19, type = "b")
+
 legend("topright", legend = c("Función", "Trayectoria del algoritmo"),
        col = c("blue", "red"), lty = c(1, NA), pch = c(NA, 19))
 

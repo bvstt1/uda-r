@@ -1,11 +1,11 @@
-# Función objetivo
-f <- function(x){
-  return(x^2 + 4*x + 5)
+  # Función objetivo correcta
+f <- function(x) {
+  return((x - 3)^2)
 }
 
-# Gradiente de la función
-grad_f <- function(x){
-  return(2*x + 4)
+# Gradiente correcto
+grad_f <- function(x) {
+  return(2 * (x - 3))
 }
 
 # Parámetros
@@ -43,28 +43,51 @@ for (alpha in alphas) {
   )
 }
 
-# Mostrar resumen de iteraciones y mínimos
-for (nombre in names(resultados)) {
-  cat(nombre, "→ iteraciones:", resultados[[nombre]]$iteraciones,
-      "mínimo aproximado:", resultados[[nombre]]$minimo, "\n")
-}
+resumen <- data.frame(
+  alpha = alphas,
+  iteraciones = sapply(resultados, function(r) r$iteraciones),
+  x_min = round(sapply(resultados, function(r) r$x), 6),
+  f_min = formatC(sapply(resultados, function(r) r$minimo), format = "e", digits = 6)
+)
+
+rownames(resumen) <- names(resultados)
+print(resumen)
+
 
 # Gráficos individuales para cada alpha
-par(mfrow = c(2, 2))
-colors <- c("blue", "red", "green", "purple")
 
-for (i in seq_along(alphas)) {
-  nombre <- paste0("alpha_", alphas[i])
-  f_hist <- resultados[[nombre]]$f_hist
-  
-  if (length(f_hist) > 1) {
-    plot(f_hist, type = "o", col = colors[i], pch = 19, lwd = 2,
-         xlab = "Iteraciones", ylab = "f(x)",
-         main = paste("alpha =", alphas[i]),
-         ylim = c(0, max(f_hist) + 10))
-  } else {
-    plot(1, type = "n", xlab = "Iteraciones", ylab = "f(x)",
-         main = paste("alpha =", alphas[i]))
-    text(1, 1, "Sin datos válidos", col = "red")
-  }
-}
+# alpha = 0.01
+png("graf_alpha_001.png", width=800, height=600)
+plot(resultados[["alpha_0.01"]]$f_hist, type = "o", col = "blue", pch = 19, lwd = 2,
+     xlab = "Iteraciones", ylab = "f(x)",
+     main = "Descenso del gradiente (α = 0.01)",
+     ylim = c(0, max(resultados[["alpha_0.01"]]$f_hist) + 10))
+legend("topright", legend = "α = 0.01", col = "blue", pch = 19, lty = 1, bty = "n")
+dev.off()
+
+# alpha = 0.1
+png("graf_alpha_01.png", width=800, height=600)
+plot(resultados[["alpha_0.1"]]$f_hist, type = "o", col = "red", pch = 19, lwd = 2,
+     xlab = "Iteraciones", ylab = "f(x)",
+     main = "Descenso del gradiente (α = 0.1)",
+     ylim = c(0, max(resultados[["alpha_0.1"]]$f_hist) + 10))
+legend("topright", legend = "α = 0.1", col = "red", pch = 19, lty = 1, bty = "n")
+dev.off()
+
+# alpha = 0.5
+png("graf_alpha_05.png", width=800, height=600)
+plot(resultados[["alpha_0.5"]]$f_hist, type = "o", col = "green", pch = 19, lwd = 2,
+     xlab = "Iteraciones", ylab = "f(x)",
+     main = "Descenso del gradiente (α = 0.5)",
+     ylim = c(0, max(resultados[["alpha_0.5"]]$f_hist) + 10))
+legend("topright", legend = "α = 0.5", col = "green", pch = 19, lty = 1, bty = "n")
+dev.off()
+
+# alpha = 0.9
+png("graf_alpha_09.png", width=800, height=600)
+plot(resultados[["alpha_0.9"]]$f_hist, type = "o", col = "purple", pch = 19, lwd = 2,
+     xlab = "Iteraciones", ylab = "f(x)",
+     main = "Descenso del gradiente (α = 0.9)",
+     ylim = c(0, max(resultados[["alpha_0.9"]]$f_hist) + 10))
+legend("topright", legend = "α = 0.9", col = "purple", pch = 19, lty = 1, bty = "n")
+dev.off()

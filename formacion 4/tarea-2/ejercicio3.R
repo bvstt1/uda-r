@@ -1,3 +1,5 @@
+x11()
+
 # Función objetivo
 f <- function(xy) {
   (xy[1] - 2)^2 + (xy[2] + 1)^2
@@ -37,12 +39,12 @@ y_vals <- seq(-6, 2, length.out = 100)
 z <- outer(x_vals, y_vals, Vectorize(function(x, y) f(c(x, y))))
 
 # Graficar curvas de nivel
+png("trayectoria_2D.png", width=800, height=600)
 contour(x_vals, y_vals, z,
         nlevels = 20,
         xlab = "x", ylab = "y",
         main = "Trayectoria del descenso del gradiente")
-
-# Agregar trayectoria del algoritmo
 points(trayectoria[,1], trayectoria[,2], type = "o", col = "red", pch = 19)
-points(2, -1, col = "blue", pch = 4, lwd = 2)  # mínimo teórico
+points(2, -1, col = "blue", pch = 4, lwd = 2)
 legend("topright", legend = c("Trayectoria", "Mínimo"), col = c("red", "blue"), pch = c(19, 4))
+dev.off()
